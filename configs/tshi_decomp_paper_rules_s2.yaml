@@ -1,0 +1,41 @@
+# Paper-rule study, Strategy II (existing units may house another existing match): identical to tshi_decomp.yaml, but every plant retrofit obeys the
+# bounds of Lo et al. Sec. 6 (30 kW minimum duty of every active unit, 0.1 minimum
+# split fraction, $500 per bypass, no uncharged excess area).
+method: sac
+seed: 1
+budget: 3000          # site evaluations (each = three independent plant optimizations)
+batch: 24             # proposals evaluated in parallel per iteration (load-balances the plant solves)
+workers: 18           # plant-solver processes
+warmup: 256           # uniform-random proposals before learning starts
+utd: 4                # gradient updates per evaluated proposal
+policy_eval_every: 5  # iterations between deterministic-policy probes (counted in the budget)
+torch_threads: 4
+sac:
+  hidden_dims: [256, 256]
+  gamma: 0.0          # one-step episodes: the target is the reward itself
+  tau: 0.01
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  alpha_lr: 0.0003
+  initial_alpha: 0.02
+  target_entropy_per_dim: -1.5
+  batch_size: 256
+  replay_capacity: 100000
+  log_std_min: -10.0
+  log_std_max: 1.0
+site:
+  balance: sources            # sources export exactly their request; sinks share the total
+  duty_snap: 0.1              # top 10% of a duty action = replace all of the plant's utility
+  min_residual_utility: 30.0  # otherwise keep >= 30 kW (no forbidden 0-30 kW residual)
+plant_solver:          # = tshi_decomp.plant.paper_rules(strategy=2)
+  strategy: 2
+  min_fraction: 0.1
+  free_area: 1.0e-6
+  min_unit_duty: 30.0
+  bypass_cost: 500.0
+  require_existing_matches: true   # Strategies I/II keep every existing match
+  allow_new_utility_units: false
+de:
+  population: 24
+  F: 0.6
+  CR: 0.9

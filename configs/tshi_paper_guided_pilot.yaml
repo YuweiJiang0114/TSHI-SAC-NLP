@@ -1,0 +1,40 @@
+# Controlled feasibility/learning pilot before another 3,000-step experiment.
+model: paper
+action_policy: guided_neighborhood
+seed: 2000
+steps: 120
+episode_length: 20
+warmup: 32
+utd: 1
+batch_size: 32
+replay_capacity: 1000
+torch_threads: 1
+evaluation_rollouts: 2
+progress_every: 10
+run_kind: paper_guided_pilot
+env:
+  stages: 3
+  dt_min: 1.0
+  max_time_s: 8.0
+  solver_id: 3
+  reconcile_installed_areas: true
+  flow_max: 1000.0
+guided:
+  area_log_step: 0.02
+  temperature_step: 1.0
+  flow_log_step: 0.02
+  fraction_step: 0.005
+  neighborhood_fraction: 0.25
+  temperature_radius: 10.0
+  split_radius: 0.10
+  initial_area_factor: 1.05
+  reward_scale: 10000.0
+  rejection_penalty: 0.1
+masac:
+  actor_learning_rate: 0.0001
+  critic_learning_rate: 0.0003
+  entropy_coefficient: 0.001
+  automatic_entropy_tuning: false
+  log_std_min: -5.0
+  log_std_max: -1.0
+  initial_log_std: -1.5

@@ -1,0 +1,23 @@
+# T6 seed 2000 trial; 3000 training steps, followed by ten full 50-step rollouts.
+seed: 2000
+steps: 3000
+episode_length: 50
+warmup: 300
+utd: 5
+batch_size: 128
+replay_capacity: 100000
+dt_min: 1.0
+torch_threads: 1
+evaluation_rollouts: 10
+benchmark: case/benchmark.json
+baselines: results/baselines.json
+env:
+  mode: retrofit
+  stream_splits: true
+  branch_temperatures: true
+  multi_period: false
+  storage: false
+  heat_pump: false
+  n_workers: 3
+# Costs are read unchanged from case/data.json, including TIMC and priced backup utilities.
+masac: {}

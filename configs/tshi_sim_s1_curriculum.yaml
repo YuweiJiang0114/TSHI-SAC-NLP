@@ -1,0 +1,44 @@
+# Joint training, total reward for every agent, rule curriculum: the 30 kW minimum duty and
+# the 0.1 minimum bypass are switched off first (continuous landscape), then tightened to
+# the paper's values; reported designs are only those under the paper rules.  The site
+# agent stays random until strictly feasible designs that beat the baseline exist.
+seed: 1
+case: "-++"
+torch_threads: 4
+site:
+  balance: sources
+  duty_snap: 0.1
+  min_residual_utility: 30.0
+sim: {}                # final rules: paper Sec. 6
+curriculum:
+  - until_eval: 8000
+    sim: {min_duty: 0.0, min_bypass: 0.0}
+  - until_eval: 16000
+    sim: {min_duty: 15.0, min_bypass: 0.05}
+sac:
+  hidden_dims: [256, 256]
+  gamma: 0.0
+  tau: 0.01
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  alpha_lr: 0.0003
+  initial_alpha: 0.02
+  target_entropy_per_dim: -1.5
+  batch_size: 256
+  replay_capacity: 400000
+  log_std_min: -10.0
+  log_std_max: 1.0
+plant_reward: total
+plant_obs: site
+phase1:
+  iterations: 0
+phase2:
+  budget: 40000
+  batch: 32
+  warmup: 6000
+  warmup_until_strict: 20
+  utd: 2
+  plant_utd: 1.0
+  plant_explore: true
+  random_fraction: 0.3
+  policy_eval_every: 5

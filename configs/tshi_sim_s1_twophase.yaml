@@ -1,0 +1,39 @@
+# Original two-phase scheme: plant SAC agents first (own-plant reward, random interfaces),
+# then the site SAC agent (total reward) with the plant agents still learning.
+seed: 1
+case: "-++"
+torch_threads: 4
+site:
+  balance: sources
+  duty_snap: 0.1
+  min_residual_utility: 30.0
+sim: {}                # paper Sec. 6 rules throughout
+sac:
+  hidden_dims: [256, 256]
+  gamma: 0.0
+  tau: 0.01
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  alpha_lr: 0.0003
+  initial_alpha: 0.02
+  target_entropy_per_dim: -1.5
+  batch_size: 256
+  replay_capacity: 300000
+  log_std_min: -10.0
+  log_std_max: 1.0
+plant_reward: own      # plant agents: own plant's TAC saving (phase 1 and phase 2)
+plant_obs: own         # plant agents observe their own interface
+phase1:                # plant agents alone on random interfaces (feasible ones only)
+  iterations: 1500
+  batch: 64
+  warmup_iterations: 20
+  utd: 0.5
+phase2:                # site agent; plant agents keep learning
+  budget: 4000
+  batch: 24
+  warmup: 480
+  utd: 4
+  plant_utd: 0.5
+  plant_explore: true
+  random_fraction: 0.1
+  policy_eval_every: 5

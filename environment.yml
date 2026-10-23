@@ -1,0 +1,16 @@
+name: tshi
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11
+  - numpy
+  - scipy
+  - pyomo
+  - ipopt
+  - pyyaml
+  - matplotlib
+  - pytest
+  - pytorch
+  - pip
+  - pip:
+      - pyscipopt   # optional: SCIP global verification (tshi_decomp/global_check.py)

@@ -1,0 +1,9 @@
+[project]
+name = "tshi-sac-nlp"
+version = "0.1.0"
+description = "SAC agents + site NLP for the retrofit of multi-plant heat exchanger networks (Lo, Hsu & Chang 2021 case)"
+requires-python = ">=3.11"
+dependencies = ["numpy", "scipy", "torch", "pyomo", "PyYAML", "matplotlib"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

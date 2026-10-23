@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+results/
+runs/
+*.pt
+*.nl
+*.sol
+.pytest_cache/
+tests/_generated_test_runs/
+.spyproject/

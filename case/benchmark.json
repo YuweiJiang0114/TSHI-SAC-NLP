@@ -1,0 +1,262 @@
+{
+  "case_id": "lo_hsu_chang_2021_three_plant",
+  "provenance_legend": {
+    "REPORTED": "Number printed in the main text, a table or a figure of the attached Lo 2021 PDF.",
+    "SI_VIA_REPO": "Supplementary Table C1 value, copied from cases/lo_2021_strategy1_steady.json; the SI itself is not in the attached PDFs.",
+    "DERIVED": "Arithmetic on REPORTED numbers using the Lo 2021 cost model (Eqs. 67-79, Sec. 6 parameters). Not printed in the paper."
+  },
+  "baseline_standalone": {
+    "provenance": "REPORTED (Fig. 2, Sec. 6); utility costs DERIVED from Fig. 2 duties x Table 2 prices",
+    "minimum_TAC_usd_per_yr": {"P1": 316565.0, "P2": 56294.0, "P3": 287769.0, "total_DERIVED": 660628.0},
+    "hot_utility_kW": {"P1": {"LP": 737.0}, "P2": {"LP": 50.5}, "P3": {"HO": 214.5}},
+    "cold_utility_kW": {"P1": {"CW": 147.0}, "P2": {"CW": 110.5}, "P3": {"CW": 629.5}},
+    "utility_cost_usd_per_yr_DERIVED": {"P1": 305775.0, "P2": 47825.0, "P3": 276750.0, "TUC_total": 630350.0},
+    "note": "TACS (Eq. 67) is measured against TUC = total stand-alone utility cost (630,350), not against the stand-alone TACs."
+  },
+  "TACS_by_coalition_usd_per_yr": {
+    "provenance": "REPORTED (Tables 3, 4, 5)",
+    "roles_legend": "order P1,P2,P3; 'sink'/'source'/'-'",
+    "strategy_I": [
+      {"coalition": "P1,P2",    "case": 1, "roles": ["sink", "source", "-"],      "TACS": 53876.0},
+      {"coalition": "P1,P2",    "case": 2, "roles": ["source", "sink", "-"],      "TACS": 0.0},
+      {"coalition": "P1,P3",    "case": 1, "roles": ["sink", "-", "source"],      "TACS": 138019.0},
+      {"coalition": "P1,P3",    "case": 2, "roles": ["source", "-", "sink"],      "TACS": 0.0},
+      {"coalition": "P2,P3",    "case": 1, "roles": ["-", "sink", "source"],      "TACS": 15669.0},
+      {"coalition": "P2,P3",    "case": 2, "roles": ["-", "source", "sink"],      "TACS": 0.0},
+      {"coalition": "P1,P2,P3", "case": 1, "roles": ["sink", "sink", "source"],   "TACS": 138019.0},
+      {"coalition": "P1,P2,P3", "case": 2, "roles": ["sink", "source", "sink"],   "TACS": 53876.0},
+      {"coalition": "P1,P2,P3", "case": 3, "roles": ["sink", "source", "source"], "TACS": 176702.0},
+      {"coalition": "P1,P2,P3", "case": 4, "roles": ["source", "sink", "sink"],   "TACS": 0.0},
+      {"coalition": "P1,P2,P3", "case": 5, "roles": ["source", "sink", "source"], "TACS": 15669.0},
+      {"coalition": "P1,P2,P3", "case": 6, "roles": ["source", "source", "sink"], "TACS": 0.0}
+    ],
+    "strategy_II": [
+      {"coalition": "P1,P2",    "case": 1, "roles": ["sink", "source", "-"],      "TACS": 53876.0},
+      {"coalition": "P1,P2",    "case": 2, "roles": ["source", "sink", "-"],      "TACS": 0.0},
+      {"coalition": "P1,P3",    "case": 1, "roles": ["sink", "-", "source"],      "TACS": 139834.0},
+      {"coalition": "P1,P3",    "case": 2, "roles": ["source", "-", "sink"],      "TACS": 0.0},
+      {"coalition": "P2,P3",    "case": 1, "roles": ["-", "sink", "source"],      "TACS": 15669.0},
+      {"coalition": "P2,P3",    "case": 2, "roles": ["-", "source", "sink"],      "TACS": 0.0},
+      {"coalition": "P1,P2,P3", "case": 1, "roles": ["sink", "sink", "source"],   "TACS": 139834.0},
+      {"coalition": "P1,P2,P3", "case": 2, "roles": ["sink", "source", "sink"],   "TACS": 53876.0},
+      {"coalition": "P1,P2,P3", "case": 3, "roles": ["sink", "source", "source"], "TACS": 176702.0},
+      {"coalition": "P1,P2,P3", "case": 4, "roles": ["source", "sink", "sink"],   "TACS": 0.0},
+      {"coalition": "P1,P2,P3", "case": 5, "roles": ["source", "sink", "source"], "TACS": 15669.0},
+      {"coalition": "P1,P2,P3", "case": 6, "roles": ["source", "source", "sink"], "TACS": 0.0}
+    ],
+    "strategy_III": [
+      {"coalition": "P1,P2",    "case": 1, "roles": ["sink", "source", "-"],      "TACS": 53876.0},
+      {"coalition": "P1,P2",    "case": 2, "roles": ["source", "sink", "-"],      "TACS": 0.0},
+      {"coalition": "P1,P3",    "case": 1, "roles": ["sink", "-", "source"],      "TACS": 140159.0},
+      {"coalition": "P1,P3",    "case": 2, "roles": ["source", "-", "sink"],      "TACS": 0.0},
+      {"coalition": "P2,P3",    "case": 1, "roles": ["-", "sink", "source"],      "TACS": 15669.0},
+      {"coalition": "P2,P3",    "case": 2, "roles": ["-", "source", "sink"],      "TACS": 0.0},
+      {"coalition": "P1,P2,P3", "case": 1, "roles": ["sink", "sink", "source"],   "TACS": 140159.0},
+      {"coalition": "P1,P2,P3", "case": 2, "roles": ["sink", "source", "sink"],   "TACS": 53876.0},
+      {"coalition": "P1,P2,P3", "case": 3, "roles": ["sink", "source", "source"], "TACS": 178702.0},
+      {"coalition": "P1,P2,P3", "case": 4, "roles": ["source", "sink", "sink"],   "TACS": 0.0},
+      {"coalition": "P1,P2,P3", "case": 5, "roles": ["source", "sink", "source"], "TACS": 15669.0},
+      {"coalition": "P1,P2,P3", "case": 6, "roles": ["source", "source", "sink"], "TACS": 0.0}
+    ]
+  },
+  "shapley_allocation_usd_per_yr": {
+    "provenance": "REPORTED (Sec. 7.1-7.3), grand coalition, case 3",
+    "strategy_I":   {"P1": 85660.0, "P2": 24486.0, "P3": 66557.0, "sum_DERIVED": 176703.0},
+    "strategy_II":  {"P1": 85963.0, "P2": 23880.0, "P3": 66859.0, "sum_DERIVED": 176702.0},
+    "strategy_III": {"P1": 86683.0, "P2": 24438.0, "P3": 67580.0, "sum_DERIVED": 178701.0},
+    "core_test": "Shapley point inside the core for all three strategies (stated; plot values not given)"
+  },
+  "grand_coalition_designs": {
+    "strategy_I_and_II": {
+      "source": "Fig. 3 (the paper uses one figure for both strategies; Table 4 TACS for case 3 equals Table 3)",
+      "roles": {"P1": "sink", "P2": "source", "P3": "source"},
+      "TACS_usd_per_yr": 176702.0,
+      "loop": {
+        "F_kW_per_C": 8.3,
+        "supply_T_to_sink_C": 148.6,
+        "return_T_C": 100.7,
+        "sink_internal_T_C": 112.4,
+        "source_branches": {
+          "P2": {"split_fraction": 0.34, "outlet_T_C": 140.0},
+          "P3": {"split_fraction": 0.66, "outlet_T_C": 153.0}
+        },
+        "loop_heat_kW_DERIVED": 395.9
+      },
+      "new_process_intermediate_units": [
+        {"plant": "P1", "match": "HM_P1-C2_P1", "stage": 2, "area_m2": 284.9, "duty_kW": 298.9},
+        {"plant": "P1", "match": "HM_P1-C1_P1", "stage": 3, "area_m2": 13.2,  "duty_kW": 97.0, "cold_split_fraction": 0.21},
+        {"plant": "P2", "match": "H1_P2-CM_P2", "stage": 2, "area_m2": 24.6,  "duty_kW": 110.5},
+        {"plant": "P3", "match": "H2_P3-CM_P3", "stage": 3, "area_m2": 269.3, "duty_kW": 285.4}
+      ],
+      "modified_existing_units": [
+        {"plant": "P1", "unit": "EX1-1", "match": "H1-C1", "stage": 3, "area_old_m2": 149.1, "area_new_m2": 566.7, "duty_kW": 623.0, "cold_split_fraction": 0.79, "augmented_area_DERIVED_m2": 417.6},
+        {"plant": "P2", "unit": "EX2-2", "match": "H1-C1", "stage": 3, "area_old_m2": 10.0,  "area_new_m2": 19.8,  "duty_kW": 280.0, "augmented_area_DERIVED_m2": 9.8}
+      ],
+      "unchanged_existing_units": ["P1 H1-CW 11.1 m2", "P1 LP-C2 30 m2", "P2 EX2-1 91.9 m2", "P2 LP-C2 5.8 m2", "P3 EX3-1 63.5 m2", "P3 EX3-2 23.8 m2", "P3 EX3-3 41.9 m2", "P3 H2-CW 21.6 m2", "P3 HO-C1 1.9 m2"],
+      "removed_units": ["P1 LP-C1 heater (duty replaced by HM_P1-C1)", "P2 H1-CW cooler (duty replaced by H1_P2-CM)"],
+      "bypasses": [
+        {"plant": "P1", "stream": "C2", "around": "LP-C2 heater", "bypass_fraction": 0.11},
+        {"plant": "P3", "stream": "H2", "around": "H2-CW cooler", "bypass_fraction": 0.11}
+      ],
+      "utilities_after_kW": {
+        "hot":  {"P1": {"LP": 341.1}, "P2": {"LP": 50.5}, "P3": {"HO": 214.5}},
+        "cold": {"P1": {"CW": 147.0}, "P2": {"CW": 0.0},  "P3": {"CW": 344.1}}
+      },
+      "cost_breakdown": {
+        "SI_VIA_REPO": {
+          "hot_utility_usd_per_yr": 330453.0,
+          "cold_utility_usd_per_yr": 81021.0,
+          "ATCC_augmented_units_usd": 79401.0,
+          "NTCC1_process_intermediate_units_usd": 149614.0,
+          "NTCC2_bypasses_usd": 1000.0,
+          "TIMC_usd": 82609.0
+        },
+        "DERIVED_from_figure": {
+          "hot_utility_usd_per_yr": 330437.5,
+          "cold_utility_usd_per_yr": 81015.0,
+          "ATCC_usd": 79413.6,
+          "NTCC1_usd": 149600.8,
+          "NTCC2_usd": 1000.0,
+          "TIMC_at_F_8.3_usd": 83000.0,
+          "F_implied_by_SI_TIMC_kW_per_C": 8.2609,
+          "post_retrofit_TAC_usd_per_yr": 453648.0,
+          "post_retrofit_TAC_equation": "TUC - TACS = 630350 - 176702"
+        }
+      }
+    },
+    "strategy_III": {
+      "source": "Fig. 4",
+      "roles": {"P1": "sink", "P2": "source", "P3": "source"},
+      "TACS_usd_per_yr": 178702.0,
+      "loop": {
+        "F_kW_per_C": 8.7,
+        "supply_T_to_sink_C": 147.3,
+        "return_T_C": 102.0,
+        "sink_internal": {"parallel_split": {"to_HM-C1_stage2": 0.87, "to_HM-C2_stage2": 0.13}, "branch_outlets_C": [108.0, 111.8], "mixed_C": 108.4},
+        "source_branches": {
+          "P2": {"split_fraction": 0.34, "outlet_T_C": 140.0},
+          "P3": {"split_fraction": 0.66, "outlet_T_C": 150.9}
+        },
+        "loop_heat_kW_DERIVED": 392.0
+      },
+      "new_process_intermediate_units": [
+        {"plant": "P1", "match": "HM_P1-C1_P1", "stage": 2, "area_m2": 123.7, "duty_kW": 297.4},
+        {"plant": "P1", "match": "HM_P1-C2_P1", "stage": 2, "area_m2": 36.0,  "duty_kW": 39.0, "cold_split_fraction": 0.14},
+        {"plant": "P1", "match": "HM_P1-C1_P1", "stage": 3, "area_m2": 6.5,   "duty_kW": 55.6, "cold_split_fraction": 0.13},
+        {"plant": "P2", "match": "H1_P2-CM_P2", "stage": 2, "area_m2": 25.7,  "duty_kW": 110.5},
+        {"plant": "P3", "match": "H2_P3-CM_P3", "stage": 3, "area_m2": 202.6, "duty_kW": 281.5}
+      ],
+      "new_process_process_units": [
+        {"plant": "P1", "match": "H1-C1", "stage": 3, "area_m2": 185.1, "duty_kW": 366.9, "cold_split_fraction": 0.87}
+      ],
+      "reassigned_existing_units": [
+        {"plant": "P1", "unit": "EX1-1", "area_m2": 149.1, "new_stage": 2, "duty_kW": 256.1, "cold_split_fraction": 0.86, "housed_match": "H1-C2 per text Sec. 6.3; figure label reads H1P1-C1P1 but the unit sits on the C2 line"}
+      ],
+      "modified_existing_units": [
+        {"plant": "P2", "unit": "EX2-2", "match": "H1-C1", "area_old_m2": 10.0, "area_new_m2": 19.8, "duty_kW": 280.0}
+      ],
+      "removed_units": ["P1 LP-C1 heater", "P2 H1-CW cooler"],
+      "bypasses": [
+        {"plant": "P1", "stream": "C2", "around": "LP-C2 heater", "bypass_fraction": 0.11},
+        {"plant": "P3", "stream": "H2", "around": "H2-CW cooler", "bypass_fraction": 0.11}
+      ],
+      "utilities_after_kW": {
+        "hot":  {"P1": {"LP": 345.0}, "P2": {"LP": 50.5}, "P3": {"HO": 214.5}},
+        "cold": {"P1": {"CW": 147.0}, "P2": {"CW": 0.0},  "P3": {"CW": 348.0}}
+      },
+      "cost_breakdown_DERIVED_from_figure": {
+        "hot_utility_usd_per_yr": 331900.0,
+        "cold_utility_usd_per_yr": 81600.0,
+        "NTCC1_usd": 141792.5,
+        "NTCC4_new_H1-C1_usd": 38955.5,
+        "ATCC_EX2-2_usd": 12526.4,
+        "NTCC3_reassignment_usd": 2000.0,
+        "NTCC2_bypasses_usd": 1000.0,
+        "TIMC_at_F_8.7_usd": 87000.0,
+        "TACS_recomputed_usd_per_yr": 178636.0,
+        "note": "Differs from reported 178,702 by 66 $/yr, consistent with rounding of F and of the duties printed in Fig. 4. SI Tables C6-C8 not available."
+      }
+    }
+  },
+  "not_reported_in_attached_pdfs": [
+    "per-plant post-retrofit TAC (only Shapley-allocated savings are given)",
+    "Strategy II/III cost component tables C3-C8 (Supplementary Part C)",
+    "designs for coalitions other than the grand coalition case 3"
+  ],
+  "secondary_literature_results": {
+    "chang2017": {
+      "provenance": "REPORTED (Sec. 5); grassroots synthesis, different stream data",
+      "fig6_example1_loop": {"F_kW_per_C": 171.6, "plant1_return_to_supply_C": [100.9, 132.9, 163.3, 211.7, 234.9], "plant1_loop_duties_kW": [5485.2, 5216.6, 8305.1, 3981.1], "plant2_loop_nodes_C": [100.9, 184.5, 217.8, 234.9], "hot_utility_kW": {"plant1": [6975.2, 48480.7], "plant2": 5077.4}, "cold_utility_kW": {"plant1": [5860.0, 4191.7], "plant2": [1402.7, 1318.2, 7590.0]}},
+      "fig8_example2_loop": {"F_kW_per_C": 162.8, "nodes_C": [128.2, 239.7, 358.6], "pumps": 3, "loop_duties_kW": {"P1_H1": 18150.0, "P2_H1_branch": 19350.0, "P3_C1": 12500.0, "P3_C2": 25000.0}, "hot_utility_kW": {"P2_C1": 1500.0}, "cold_utility_kW": {"P1_H1": 16850.0, "P3_H1": 34000.0, "P3_H2": 15000.0}},
+      "example1_two_plants":   {"TAC_usd_per_yr": 13063580.0, "HEX_annualized": 1213698.4, "piping_annualized": 173542.1, "pumping_annualized": 28307.6, "hot_utility_kW": {"plant1": 55455.9, "plant2": 5077.4}, "loop_F_kW_per_C": 171.6, "supply_T_C": 234.9, "return_T_C": 100.9, "EMAT_C": 5.6, "L12_km": 1.0},
+      "example2_three_plants": {"TAC_usd_per_yr": 1691170.3, "HEX_annualized": 480061.7, "piping_annualized": 338297.6, "pumping_annualized": 46010.8, "hot_utility_kW": 1500.0, "loop_F_kW_per_C": 162.8, "supply_T_C": 358.6, "return_T_C": 128.2, "EMAT_C": 10.0},
+      "example3_five_plants":  {"TAC_usd_per_yr": 4987570.1, "HEX_annualized": 812294.1, "piping_annualized": 544723.3, "pumping_annualized": 55784.6, "n_exchangers": 48, "circles": [{"plants": "1->2", "F": 369.6, "Ts": 209.2, "Tr": 76.3}, {"plants": "3->4", "F": 132.0, "Ts": 214.7, "Tr": 120.0}, {"plants": "5->4", "F": 103.4, "Ts": 207.1, "Tr": 76.3}], "EMAT_C": 10.0}
+    },
+    "zhou2024": {
+      "provenance": "REPORTED (Tables 1-3); grassroots two-step method",
+      "case1": {"single_plant_TAC": 1130335.0, "tian2020_TAC": 1051587.0, "this_work_TAC": 1017849.0, "loop_F_kW_per_C": 2.88, "hot_node_C": 190.0, "cold_node_C": 85.22},
+      "case2": {
+        "note": "Same nine streams as Lo 2021, grassroots design, HRAT = EMAT = 10 K, intermediate-stream cost ignored, different utilities/prices. Not directly comparable to Lo TACS.",
+        "table2": {
+          "single_plant":  {"TAC": 121933.0, "utility_cost": 103000.0, "HU_kW": 1155.0, "CU_kW": 1040.0, "area_m2": 107.16, "units": 13},
+          "pan":           {"TAC": 73390.0,  "utility_cost": 47500.0,  "HU_kW": 928.0,  "CU_kW": 813.0,  "area_m2": 267.75, "units": 14},
+          "tian2020":      {"TAC": 72208.0,  "utility_cost": 49159.0,  "HU_kW": 920.0,  "CU_kW": 805.0,  "area_m2": 241.87, "units": 12},
+          "this_work":     {"TAC": 69551.0,  "utility_cost": 42314.0,  "HU_kW": 780.0,  "CU_kW": 650.0,  "area_m2": 258.87, "units": 15}
+        },
+        "model1_objective_usd": {"one_circuit_isothermal_mixing_1A": 44577.0, "one_circuit_1B": 41429.0, "two_circuits": 36347.0},
+        "fig8_standalone_targets_kW": {
+          "P1": {"FUEL": 800.0, "CW": 210.0, "pinch_C": 60.0},
+          "P2": {"HP": 100.0,   "CW": 160.0, "pinch_C": 140.0},
+          "P3": {"FUEL": 255.0, "CW": 670.0, "pinch_C": 200.0}
+        },
+        "fig9_intermediate_streams": {
+          "roles": {"P1": "sink", "P2": "source", "P3": "source"},
+          "HM1_to_P1": {"F_kW_per_C": 8.75, "T_in_C": 200.0, "T_out_C": 108.75},
+          "CM1_from_P2": {"F_kW_per_C": 5.87, "T_in_C": 108.75, "T_out_C": 190.0},
+          "CM2_from_P3": {"F_kW_per_C": 2.88, "T_in_C": 108.75, "T_out_C": 220.44},
+          "mixing_node_C": 200.0,
+          "targets_after_kW": {"P1": {"CW": 210.0, "pinches_C": [60.0, 110.0]}, "P2": {"HP": 418.39}, "P3": {"FUEL": 342.5, "CW": 435.89, "pinches_C": [110.0, 200.0]}},
+          "note": "Fig. 9 shows the Model 1A (isothermal mixing) configuration; Fig. 10 HEN uses HM1/CM outlet 108.57 C and CM1/CM2 outlet 190 C, i.e. the Model 1B result."
+        },
+        "fig10_hens": {
+          "P1": {
+            "units": [
+              {"match": "HM1-C2", "duty_kW": 428.6, "hm_T_C": [200.0, 151.02], "c_T_C": [136.43, 190.0]},
+              {"match": "H1-C2",  "duty_kW": 211.4, "h_T_C": [150.0, 119.8], "c_T_C": [110.0, 136.43]},
+              {"match": "HM1-C1", "duty_kW": 317.4, "hm_T_C": [151.02, 108.57], "c_T_C": [98.73, 140.0]},
+              {"match": "H1-C1",  "duty_kW": 348.6, "h_T_C": [119.8, 70.0], "c_T_C": [60.0, 98.73]},
+              {"match": "H1-CW",  "duty_kW": 210.0, "h_T_C": [70.0, 40.0]}
+            ],
+            "HM1_heat_kW_DERIVED": 746.0
+          },
+          "P2": {
+            "units": [
+              {"match": "H1-CM1", "duty_kW": 435.0, "h_T_C": [200.0, 120.91], "cm_T_C": [108.57, 182.61]},
+              {"match": "H1-C1",  "duty_kW": 280.0, "h_T_C": [120.91, 70.0], "c_T_C": [30.0, 110.0]},
+              {"match": "HP-C2",  "duty_kW": 375.0, "c_T_C": [140.0, 190.0]},
+              {"match": "HP-CM1", "duty_kW": 43.39, "cm_T_C": [182.61, 190.0]}
+            ]
+          },
+          "P3": {
+            "units": [
+              {"match": "H1-C1",  "duty_kW": 403.7, "h_T_C": [370.0, 235.44], "c_T_C": [190.0, 279.71]},
+              {"match": "H1-CM2", "duty_kW": 256.3, "h_T_C": [235.44, 150.0], "cm_T_C": [136.29, 190.0]},
+              {"match": "H2-CM2", "duty_kW": 79.68, "h_split_outlet_C": 118.57, "cm_T_C": [108.57, 136.29]},
+              {"match": "H2-C1",  "duty_kW": 360.0, "h_split_outlet_C": 120.38, "c_T_C": [110.0, 190.0]},
+              {"match": "FUEL-C1","duty_kW": 361.3, "c_T_C": [279.71, 360.0]},
+              {"match": "H2-CW",  "duty_kW": 440.32, "h_T_C": [120.06, 40.0]}
+            ]
+          },
+          "utilities_kW_DERIVED": {"HU": 779.69, "CU": 650.32, "matches_table2": "HU 780 / CU 650"},
+          "transcription_checks": {
+            "stream_closure": "All nine process streams close to their F*dT loads except P1-C1 (see next).",
+            "P1_HM1-C1_duty": "Printed 317.40 kW; C1 temperatures (98.73->140 C, FCp 9) give 371.4 kW, and HM1 F*dT = 8.75*(200-108.57) = 800.0 = 428.6 + 371.4. Printed value is a digit transposition; 371.4 is the consistent value.",
+            "CM2_flow": "Fig. 10 CM2 duties 256.30 + 79.68 = 335.98 kW over 108.57->190 C imply F = 4.13 kW/C, not the Fig. 9 value 2.88 (Fig. 9 is the Model 1A configuration).",
+            "loop_balance": "Sources 435.00 + 43.39 (HP) + 335.98 = 814.37 kW vs sink 800.0 kW; CM outlets drawn at 190 C while HM1 enters P1 at 200 C. Not resolvable without Zhou Supplementary Material."
+          }
+        }
+      },
+      "case3_chang2017_data": {"single_plant_TAC": 8278773.0, "chang2017_TAC_recalculated": 5118902.0, "hong2019_TAC_recalculated": 4852757.0, "this_work_TAC": 3587387.0}
+    }
+  }
+}

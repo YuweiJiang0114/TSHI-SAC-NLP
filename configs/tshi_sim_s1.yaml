@@ -1,0 +1,35 @@
+# Simulation model, Strategy I, paper Sec. 6 rules: plant SAC agents and the site SAC agent
+# trained together from the first evaluation (joint training).
+seed: 1
+case: "-++"            # P1 sink, P2 and P3 sources (Lo et al. case 3 of the grand coalition)
+torch_threads: 4
+site:                  # interface decoding, identical to the decomposition study
+  balance: sources
+  duty_snap: 0.1
+  min_residual_utility: 30.0
+sim: {}                # tshi_sim.plant.SimConfig defaults (paper bounds; dt_min 1 K)
+sac:                   # shared SAC hyperparameters (one-step episodes)
+  hidden_dims: [256, 256]
+  gamma: 0.0
+  tau: 0.01
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  alpha_lr: 0.0003
+  initial_alpha: 0.02
+  target_entropy_per_dim: -1.5
+  batch_size: 256
+  replay_capacity: 300000
+  log_std_min: -10.0
+  log_std_max: 1.0
+plant_reward: total    # every agent (site and plants) is rewarded with the site's TAC saving
+phase1:
+  iterations: 0        # 0 = no separate plant pretraining
+phase2:                # joint training
+  budget: 12000        # site evaluations (each = one design of every member plant)
+  batch: 32
+  warmup: 640          # random site actions; plant agents already act and learn
+  utd: 2               # site-agent gradient updates per evaluation
+  plant_utd: 1.0       # plant-agent gradient updates per evaluation
+  plant_explore: true  # plant agents sample their policies during training evaluations
+  random_fraction: 0.1 # share of random site actions kept after the warmup
+  policy_eval_every: 5 # iterations between deterministic probes (all agents deterministic)

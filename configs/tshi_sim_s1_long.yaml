@@ -1,0 +1,37 @@
+# Joint training, total reward for every agent, long random warmup so the plant agents
+# learn across interfaces before the site agent is allowed to exploit; plant agents see
+# the whole site's interfaces.
+seed: 1
+case: "-++"
+torch_threads: 4
+site:
+  balance: sources
+  duty_snap: 0.1
+  min_residual_utility: 30.0
+sim: {}
+sac:
+  hidden_dims: [256, 256]
+  gamma: 0.0
+  tau: 0.01
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  alpha_lr: 0.0003
+  initial_alpha: 0.02
+  target_entropy_per_dim: -1.5
+  batch_size: 256
+  replay_capacity: 400000
+  log_std_min: -10.0
+  log_std_max: 1.0
+plant_reward: total
+plant_obs: site        # own interface + loop headers + every plant's signed duty
+phase1:
+  iterations: 0
+phase2:
+  budget: 24000
+  batch: 32
+  warmup: 8000         # random site actions; all plant agents act and learn throughout
+  utd: 2
+  plant_utd: 1.0
+  plant_explore: true
+  random_fraction: 0.3
+  policy_eval_every: 5

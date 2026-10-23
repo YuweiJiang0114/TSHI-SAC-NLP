@@ -1,0 +1,484 @@
+{
+  "case_id": "lo_hsu_chang_2021_three_plant",
+  "sources": {
+    "lo2021": "Lo F.-Y., Hsu C.-H., Chang C.-T. (2021) Chem. Eng. Res. Des. 174:137-157, doi:10.1016/j.cherd.2021.07.032",
+    "chang2017": "Chang C., Chen X., Wang Y., Feng X. (2017) Energy 121:306-317, doi:10.1016/j.energy.2016.12.116",
+    "zhou2024": "Zhou W., Liu L., Xing Y., Du J. (2024) Chem. Eng. Sci. 285:119559, doi:10.1016/j.ces.2023.119559",
+    "note": "Lo 2021 states the stream/utility data originate from Lo, Zhu & Chang (2020) Ind. Eng. Chem. Res. 59:18088. Supplementary material Parts A-D and Tables C1-C8 are available in case/sources/lo2021_supplement.docx and .txt. Figure areas and temperatures are rounded; the paper GEKKO reconstruction exports explicit input reconciliation."
+  },
+  "units": {
+    "temperature": "degC",
+    "FCp": "kW/degC",
+    "h": "kW/(m2 degC)",
+    "duty": "kW",
+    "area": "m2",
+    "utility_cost": "USD/(kW yr)",
+    "capital": "USD"
+  },
+  "min_approach_temperature": {
+    "value_K": 1.0,
+    "status": "INFERRED - not stated in Lo 2021",
+    "evidence": "Fig. 2 terminal approaches: P1 EX1-1 hot outlet 61 vs C1 inlet 60; P2 EX2-1 hot outlet 141 vs C2 inlet 140; P3 EX3-3 hot inlet 200 vs C1 branch outlet 199. Problem table at 1 K reproduces every Fig. 2 utility duty exactly (see verify_problem_table.py).",
+    "candidates_checked_K": [
+      1.0,
+      5.0,
+      10.0
+    ]
+  },
+  "same_streams_elsewhere": {
+    "zhou2024_case2": {
+      "statement": "Zhou 2024 case 2 (taken from Chang et al. 2018, Energy 148:90) uses the identical nine process streams as Lo 2021 Table 1, with HRAT = EMAT = 10 K and different utility types/prices.",
+      "published_standalone_targets_kW_Fig8": {
+        "P1": {
+          "QH_FUEL": 800.0,
+          "QC_CW": 210.0,
+          "pinch_C": 60.0
+        },
+        "P2": {
+          "QH_HP": 100.0,
+          "QC_CW": 160.0,
+          "pinch_C": 140.0
+        },
+        "P3": {
+          "QH_FUEL": 255.0,
+          "QC_CW": 670.0,
+          "pinch_C": 200.0
+        }
+      },
+      "published_totals_Table2": {
+        "HU_kW": 1155.0,
+        "CU_kW": 1040.0,
+        "utility_cost_usd_per_yr": 103000.0
+      },
+      "utility_prices_given_in_text": {
+        "P2_HP_usd_per_kW_yr": 30.0,
+        "P3_FUEL_usd_per_kW_yr": 40.0,
+        "others": "in Zhou Supplementary Material / Chang 2018, not attached"
+      },
+      "check": "verify_problem_table.py reproduces all six Fig. 8 targets at dTmin = 10 K"
+    }
+  },
+  "plants": {
+    "P1": {
+      "streams": [
+        {
+          "id": "H1",
+          "type": "hot",
+          "Tin_C": 150.0,
+          "Tout_C": 40.0,
+          "FCp_kW_per_C": 7.0,
+          "h_kW_per_m2C": 1.2
+        },
+        {
+          "id": "C1",
+          "type": "cold",
+          "Tin_C": 60.0,
+          "Tout_C": 140.0,
+          "FCp_kW_per_C": 9.0,
+          "h_kW_per_m2C": 1.6
+        },
+        {
+          "id": "C2",
+          "type": "cold",
+          "Tin_C": 110.0,
+          "Tout_C": 190.0,
+          "FCp_kW_per_C": 8.0,
+          "h_kW_per_m2C": 1.0
+        }
+      ],
+      "existing_hen": {
+        "source": "Lo 2021 Fig. 2(a)",
+        "stages": 2,
+        "minimum_TAC_usd_per_yr": 316565.0,
+        "units": [
+          {
+            "id": "EX1-1",
+            "kind": "exchanger",
+            "hot": "H1",
+            "cold": "C1",
+            "stage": 1,
+            "area_m2": 149.1,
+            "duty_kW": 623.0,
+            "hot_in_C": 150.0,
+            "hot_out_C": 61.0,
+            "cold_in_C": 60.0,
+            "cold_out_C": 129.2,
+            "stage_nok3": 3
+          },
+          {
+            "id": "H1-CW",
+            "kind": "cooler",
+            "hot": "H1",
+            "cold": "CW",
+            "area_m2": 11.1,
+            "duty_kW": 147.0,
+            "hot_in_C": 61.0,
+            "hot_out_C": 40.0
+          },
+          {
+            "id": "LP-C1",
+            "kind": "heater",
+            "hot": "LP",
+            "cold": "C1",
+            "area_m2": 1.9,
+            "duty_kW": 97.0,
+            "cold_in_C": 129.2,
+            "cold_out_C": 140.0
+          },
+          {
+            "id": "LP-C2",
+            "kind": "heater",
+            "hot": "LP",
+            "cold": "C2",
+            "area_m2": 30.0,
+            "duty_kW": 640.0,
+            "cold_in_C": 110.0,
+            "cold_out_C": 190.0
+          }
+        ]
+      }
+    },
+    "P2": {
+      "streams": [
+        {
+          "id": "H1",
+          "type": "hot",
+          "Tin_C": 200.0,
+          "Tout_C": 70.0,
+          "FCp_kW_per_C": 5.5,
+          "h_kW_per_m2C": 1.5
+        },
+        {
+          "id": "C1",
+          "type": "cold",
+          "Tin_C": 30.0,
+          "Tout_C": 110.0,
+          "FCp_kW_per_C": 3.5,
+          "h_kW_per_m2C": 1.1
+        },
+        {
+          "id": "C2",
+          "type": "cold",
+          "Tin_C": 140.0,
+          "Tout_C": 190.0,
+          "FCp_kW_per_C": 7.5,
+          "h_kW_per_m2C": 1.2
+        }
+      ],
+      "existing_hen": {
+        "source": "Lo 2021 Fig. 2(b)",
+        "stages": 2,
+        "minimum_TAC_usd_per_yr": 56294.0,
+        "units": [
+          {
+            "id": "EX2-1",
+            "kind": "exchanger",
+            "hot": "H1",
+            "cold": "C2",
+            "stage": 1,
+            "area_m2": 91.9,
+            "duty_kW": 324.5,
+            "hot_in_C": 200.0,
+            "hot_out_C": 141.0,
+            "cold_in_C": 140.0,
+            "cold_out_C": 183.3,
+            "stage_nok3": 1
+          },
+          {
+            "id": "EX2-2",
+            "kind": "exchanger",
+            "hot": "H1",
+            "cold": "C1",
+            "stage": 2,
+            "area_m2": 10.0,
+            "duty_kW": 280.0,
+            "hot_in_C": 141.0,
+            "hot_out_C": 90.1,
+            "cold_in_C": 30.0,
+            "cold_out_C": 110.0,
+            "stage_nok3": 3
+          },
+          {
+            "id": "H1-CW",
+            "kind": "cooler",
+            "hot": "H1",
+            "cold": "CW",
+            "area_m2": 3.2,
+            "duty_kW": 110.5,
+            "hot_in_C": 90.1,
+            "hot_out_C": 70.0
+          },
+          {
+            "id": "LP-C2",
+            "kind": "heater",
+            "hot": "LP",
+            "cold": "C2",
+            "area_m2": 5.8,
+            "duty_kW": 50.5,
+            "cold_in_C": 183.3,
+            "cold_out_C": 190.0
+          }
+        ]
+      }
+    },
+    "P3": {
+      "streams": [
+        {
+          "id": "H1",
+          "type": "hot",
+          "Tin_C": 370.0,
+          "Tout_C": 150.0,
+          "FCp_kW_per_C": 3.0,
+          "h_kW_per_m2C": 1.4
+        },
+        {
+          "id": "H2",
+          "type": "hot",
+          "Tin_C": 200.0,
+          "Tout_C": 40.0,
+          "FCp_kW_per_C": 5.5,
+          "h_kW_per_m2C": 1.1
+        },
+        {
+          "id": "C1",
+          "type": "cold",
+          "Tin_C": 110.0,
+          "Tout_C": 360.0,
+          "FCp_kW_per_C": 4.5,
+          "h_kW_per_m2C": 1.3
+        }
+      ],
+      "existing_hen": {
+        "source": "Lo 2021 Fig. 2(c)",
+        "stages": 2,
+        "minimum_TAC_usd_per_yr": 287769.0,
+        "notes": "C1 is split in stage 2; Fig. 2(c) prints split fractions 0.37 (EX3-2) / 0.63 (EX3-3); Figs. 3-4 print 0.38 / 0.62 for the same retained units.",
+        "units": [
+          {
+            "id": "EX3-1",
+            "kind": "exchanger",
+            "hot": "H1",
+            "cold": "C1",
+            "stage": 1,
+            "area_m2": 63.5,
+            "duty_kW": 510.0,
+            "hot_in_C": 370.0,
+            "hot_out_C": 200.0,
+            "cold_in_C": 199.0,
+            "cold_out_C": 312.3,
+            "stage_nok3": 1
+          },
+          {
+            "id": "EX3-2",
+            "kind": "exchanger",
+            "hot": "H1",
+            "cold": "C1",
+            "stage": 2,
+            "area_m2": 23.8,
+            "duty_kW": 150.0,
+            "hot_in_C": 200.0,
+            "hot_out_C": 150.0,
+            "cold_in_C": 110.0,
+            "cold_out_C": 199.0,
+            "cold_split_fraction": 0.37,
+            "stage_nok3": 2
+          },
+          {
+            "id": "EX3-3",
+            "kind": "exchanger",
+            "hot": "H2",
+            "cold": "C1",
+            "stage": 2,
+            "area_m2": 41.9,
+            "duty_kW": 250.5,
+            "hot_in_C": 200.0,
+            "hot_out_C": 154.5,
+            "cold_in_C": 110.0,
+            "cold_out_C": 199.0,
+            "cold_split_fraction": 0.63,
+            "stage_nok3": 2
+          },
+          {
+            "id": "H2-CW",
+            "kind": "cooler",
+            "hot": "H2",
+            "cold": "CW",
+            "area_m2": 21.6,
+            "duty_kW": 629.5,
+            "hot_in_C": 154.5,
+            "hot_out_C": 40.0
+          },
+          {
+            "id": "HO-C1",
+            "kind": "heater",
+            "hot": "HO",
+            "cold": "C1",
+            "area_m2": 1.9,
+            "duty_kW": 214.5,
+            "cold_in_C": 312.3,
+            "cold_out_C": 360.0
+          }
+        ]
+      }
+    }
+  },
+  "existing_area_provenance": "All installed areas and duties are printed directly in Lo 2021 Fig. 2; no areas were back-calculated. verify_problem_table.py recomputes them from Q/(U*dT_Chen) as a consistency check.",
+  "utilities": {
+    "P1": {
+      "CW": {
+        "Tin_C": 25.0,
+        "Tout_C": 30.0,
+        "h_kW_per_m2C": 1.2,
+        "cost_usd_per_kW_yr": 200.0
+      },
+      "LP": {
+        "Tin_C": 200.0,
+        "Tout_C": 200.0,
+        "h_kW_per_m2C": 1.5,
+        "cost_usd_per_kW_yr": 375.0
+      },
+      "MP": {
+        "Tin_C": 250.0,
+        "Tout_C": 250.0,
+        "h_kW_per_m2C": 1.8,
+        "cost_usd_per_kW_yr": 575.0
+      },
+      "HP": {
+        "Tin_C": 300.0,
+        "Tout_C": 300.0,
+        "h_kW_per_m2C": 2.3,
+        "cost_usd_per_kW_yr": 775.0
+      },
+      "HO": {
+        "Tin_C": 500.0,
+        "Tout_C": 475.0,
+        "h_kW_per_m2C": 1.8,
+        "cost_usd_per_kW_yr": 900.0
+      }
+    },
+    "P2": {
+      "CW": {
+        "Tin_C": 25.0,
+        "Tout_C": 30.0,
+        "h_kW_per_m2C": 1.2,
+        "cost_usd_per_kW_yr": 250.0
+      },
+      "LP": {
+        "Tin_C": 200.0,
+        "Tout_C": 200.0,
+        "h_kW_per_m2C": 1.5,
+        "cost_usd_per_kW_yr": 400.0
+      },
+      "MP": {
+        "Tin_C": 250.0,
+        "Tout_C": 250.0,
+        "h_kW_per_m2C": 1.8,
+        "cost_usd_per_kW_yr": 600.0
+      },
+      "HP": {
+        "Tin_C": 300.0,
+        "Tout_C": 300.0,
+        "h_kW_per_m2C": 2.3,
+        "cost_usd_per_kW_yr": 800.0
+      },
+      "HO": {
+        "Tin_C": 500.0,
+        "Tout_C": 475.0,
+        "h_kW_per_m2C": 1.8,
+        "cost_usd_per_kW_yr": 1000.0
+      }
+    },
+    "P3": {
+      "CW": {
+        "Tin_C": 25.0,
+        "Tout_C": 30.0,
+        "h_kW_per_m2C": 1.2,
+        "cost_usd_per_kW_yr": 150.0
+      },
+      "LP": {
+        "Tin_C": 200.0,
+        "Tout_C": 200.0,
+        "h_kW_per_m2C": 1.5,
+        "cost_usd_per_kW_yr": 350.0
+      },
+      "MP": {
+        "Tin_C": 250.0,
+        "Tout_C": 250.0,
+        "h_kW_per_m2C": 1.8,
+        "cost_usd_per_kW_yr": 550.0
+      },
+      "HP": {
+        "Tin_C": 300.0,
+        "Tout_C": 300.0,
+        "h_kW_per_m2C": 2.3,
+        "cost_usd_per_kW_yr": 750.0
+      },
+      "HO": {
+        "Tin_C": 500.0,
+        "Tout_C": 475.0,
+        "h_kW_per_m2C": 1.8,
+        "cost_usd_per_kW_yr": 850.0
+      }
+    },
+    "source": "Lo 2021 Table 2"
+  },
+  "intermediate_fluid": {
+    "h_kW_per_m2C": 1.5,
+    "source": "Lo 2021 Sec. 6 (hcm_p and hhm_p)",
+    "fluid_identity": "not stated in Lo 2021",
+    "Cp_density_viscosity": "not stated in Lo 2021"
+  },
+  "cost_parameters": {
+    "lo2021": {
+      "annualization_factor": 0.1349,
+      "operation_horizon_yr": 10,
+      "interest_rate": 0.0585,
+      "area_exponent_beta": 0.83,
+      "CA_exchanger_usd_per_m1.66": 380.0,
+      "CA_cooler_usd_per_m1.66": 380.0,
+      "CA_process_intermediate_usd_per_m1.66": 380.0,
+      "CA_heater_usd_per_m1.66": 700.0,
+      "CF_inner_plant_process_exchanger_cooler_heater_usd": 10000.0,
+      "CF_process_intermediate_exchanger_usd": 15000.0,
+      "BY_bypass_repiping_usd": 500.0,
+      "CM_unit_reassignment_usd": 2000.0,
+      "CIM_intermediate_fluid_usd_degC_per_kW": 10000.0,
+      "TIMC_formula": "TIMC = sum_p sum_hm CIM * F_hm (Eq. 74)",
+      "unit_capital_formula": "CF + CA * A^beta (Eqs. 69-70, 79); augmented unit uses X = A - A_EX",
+      "lower_bounds": {
+        "heat_duty_kW": 30.0,
+        "flow_fraction": 0.1,
+        "bypass_flow_fraction": 0.1,
+        "augmented_area_m2": 1.0
+      },
+      "solver": "BARON in GAMS 27.3",
+      "pipe_and_pump_costs": "not modelled separately; TIMC is the only loop cost term"
+    },
+    "chang2017": {
+      "exchanger_capital": "a + b*A^g with a=1100, b=150, g=1",
+      "pump_capital": "a*y + b*(m*dP/(cp*rho))^c with a=8600, b=7310, c=0.2 (Eq. 58)",
+      "intermediate_fluid": {
+        "type": "thermal oil",
+        "cp_kJ_per_kgC": 2.2,
+        "rho_kg_per_m3": 862.2,
+        "mu_Pa_s": 0.00021667,
+        "h_kW_per_m2C": 1.5
+      },
+      "operating_hours_h_per_yr": 8000,
+      "electricity_usd_per_kWh": 0.1,
+      "annual_factor_Af": 0.264,
+      "pipe_diameter": "Din = 0.363*(m/cp)^0.45 * rho^-0.32 (Eq. 49); Dout = 1.101*Din + 0.006349 (Eq. 50)",
+      "pipe_weight_kg_per_m": "W = 1330*Din^2 + 75.18*Din + 0.9268 (Eq. 51)",
+      "pipe_cost_per_m": "Pl = A1*W + A2*Dout^0.48 + A3 + A4*Dout (Eq. 52); Piping = Af*L*Pl (Eq. 53)",
+      "pipe_coefficients_A1_A4": "not given in the paper (cited from ref. [16]; Schedule 80 steel)",
+      "friction": "f = 0.046*Re^-0.2 (Eq. 56); dP = 4 f L rho v^2 / (2 Din) (Eq. 57)",
+      "pump_power_kW": "Q = m*dP/(cp*1000*rho*eta) (Eq. 59)",
+      "pump_efficiency": "symbol eta, value not given",
+      "pump_operation": "Pe * Hy * Q (Eq. 60)"
+    }
+  },
+  "retrofit_superstructure": {
+    "stages": 3,
+    "source": "Lo 2021 Fig. 3 (NOK=3); stage_nok3 on each existing process unit is its stage in the multi-plant superstructure"
+  }
+}

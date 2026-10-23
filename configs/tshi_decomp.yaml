@@ -1,0 +1,30 @@
+# SAC coordinates the intermediate-fluid interface; each plant optimizes its own
+# retrofit at that interface (tshi_decomp.plant).  Only original plant data used.
+method: sac
+seed: 1
+budget: 3000          # site evaluations (each = three independent plant optimizations)
+batch: 24             # proposals evaluated in parallel per iteration (load-balances the plant solves)
+workers: 18           # plant-solver processes
+warmup: 256           # uniform-random proposals before learning starts
+utd: 4                # gradient updates per evaluated proposal
+policy_eval_every: 5  # iterations between deterministic-policy probes (counted in the budget)
+torch_threads: 4
+sac:
+  hidden_dims: [256, 256]
+  gamma: 0.0          # one-step episodes: the target is the reward itself
+  tau: 0.01
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  alpha_lr: 0.0003
+  initial_alpha: 0.02
+  target_entropy_per_dim: -1.5
+  batch_size: 256
+  replay_capacity: 100000
+  log_std_min: -10.0
+  log_std_max: 1.0
+site: {}              # defaults: all plants, dT_min 1 K, 30 kW minimum plant duty
+plant_solver: {}      # defaults in tshi_decomp.plant.PlantSolverConfig
+de:
+  population: 24
+  F: 0.6
+  CR: 0.9

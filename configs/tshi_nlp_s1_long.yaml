@@ -1,0 +1,26 @@
+﻿# One SAC agent over all areas/stages/loop flows; site NLP (IPOPT) solves the operation.
+seed: 1
+case: "-++"
+torch_threads: 4
+workers: 18
+nlp: {}                # tshi_nlp.model.NLPConfig defaults (simulator-seeded start, penalty continuation)
+rules: {}              # tshi_nlp.evaluate.Rules defaults (paper Sec. 6 bounds)
+budget: 12000         # site evaluations
+batch: 36
+warmup: 360
+utd: 4
+random_fraction: 0.05
+policy_eval_every: 5
+sac:
+  hidden_dims: [256, 256]
+  gamma: 0.0
+  tau: 0.01
+  actor_lr: 0.0003
+  critic_lr: 0.001
+  alpha_lr: 0.0003
+  initial_alpha: 0.02
+  target_entropy_per_dim: -1.5
+  batch_size: 256
+  replay_capacity: 100000
+  log_std_min: -10.0
+  log_std_max: 1.0
